@@ -1,49 +1,114 @@
+/**
+ * Sample React Native App
+ * https://github.com/facebook/react-native
+ *
+ * @format
+ * @flow strict-local
+ */
+
 import React from 'react';
-import { StyleSheet, Text, View, Button, Alert, TextInput } from 'react-native';
-//-----------------------
+import {
+  SafeAreaView,
+  StyleSheet,
+  ScrollView,
+  View,
+  Text,
+  StatusBar,
+} from 'react-native';
 
-function APP2(props) {
+import {
+  Header,
+  LearnMoreLinks,
+  Colors,
+  DebugInstructions,
+  ReloadInstructions,
+} from 'react-native/Libraries/NewAppScreen';
+
+const App: () => React$Node = () => {
   return (
-    <TextInput
-      {...props} // Inherit any props passed to it; e.g., multiline, numberOfLines below
-      editable
-      maxLength={40}
-    />
+    <>
+      <StatusBar barStyle="dark-content" />
+      <SafeAreaView>
+        <ScrollView
+          contentInsetAdjustmentBehavior="automatic"
+          style={styles.scrollView}>
+          <Header />
+          {global.HermesInternal == null ? null : (
+            <View style={styles.engine}>
+              <Text style={styles.footer}>Engine: Hermes</Text>
+            </View>
+          )}
+          <View style={styles.body}>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Step One</Text>
+              <Text style={styles.sectionDescription}>
+                Edit <Text style={styles.highlight}>App.js</Text> to change this
+                screen and then come back to see your edits.
+              </Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>See Your Changes</Text>
+              <Text style={styles.sectionDescription}>
+                <ReloadInstructions />
+              </Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Debug</Text>
+              <Text style={styles.sectionDescription}>
+                <DebugInstructions />
+              </Text>
+            </View>
+            <View style={styles.sectionContainer}>
+              <Text style={styles.sectionTitle}>Learn More</Text>
+              <Text style={styles.sectionDescription}>
+                Read the docs to discover what to do next:
+              </Text>
+            </View>
+            <LearnMoreLinks />
+          </View>
+        </ScrollView>
+      </SafeAreaView>
+    </>
   );
-}
-
-
-export default function App() {
-
-  const [value, onChangeText] = React.useState('App');
-
-  
-
-  return (
-    <View style={styles.container}>
-      <Text>Open up App.js to start working on your app?!</Text>
-      <Button
-        title="press me"
-        onPress={()=>Alert.alert('simple button pressed')}
-        color ="green"/>
-
-      <APP2
-        multiline
-        numberOfLines={4}
-        onChangeText={text => onChangeText(text)}
-        value={value}
-        backgroundColor="gray"
-      />      
-     
-    </View>
-  );
-}
+};
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: 'white',
-    alignItems: 'center',
-    justifyContent: 'center',
+  scrollView: {
+    backgroundColor: Colors.lighter,
+  },
+  engine: {
+    position: 'absolute',
+    right: 0,
+  },
+  body: {
+    backgroundColor: Colors.white,
+  },
+  sectionContainer: {
+    marginTop: 32,
+    paddingHorizontal: 24,
+  },
+  sectionTitle: {
+    fontSize: 24,
+    fontWeight: '600',
+    color: Colors.black,
+  },
+  sectionDescription: {
+    marginTop: 8,
+    fontSize: 18,
+    fontWeight: '400',
+    color: Colors.dark,
+  },
+  highlight: {
+    fontWeight: '700',
+  },
+  footer: {
+    color: Colors.dark,
+    fontSize: 12,
+    fontWeight: '600',
+    padding: 4,
+    paddingRight: 12,
+    textAlign: 'right',
   },
 });
+
+export default App;
